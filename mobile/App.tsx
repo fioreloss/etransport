@@ -1,22 +1,20 @@
-import { ApolloProvider } from '@apollo/client';
-import { apollotClient } from 'core/Apollo/apolloClient';
 import { refreshAuth } from 'core/Auth';
 import { RootNavigator } from 'navigation';
 import React from 'react';
-import FlashMessage from 'react-native-flash-message';
 import 'react-native-gesture-handler';
 import { ThemeProvider } from './src/ui';
-// setI18nConfig();
+import { Provider as PaperProvider } from 'react-native-paper';
 refreshAuth();
 
 const App = () => {
   return (
-    <ApolloProvider client={apollotClient}>
-      <ThemeProvider>
+
+    <ThemeProvider>
+      <PaperProvider>
         <RootNavigator />
-        <FlashMessage position="top" />
-      </ThemeProvider>
-    </ApolloProvider>
+      </PaperProvider>
+    </ThemeProvider>
+
   );
 };
 export default App;

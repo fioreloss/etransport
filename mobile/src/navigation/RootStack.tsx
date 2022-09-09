@@ -24,11 +24,12 @@ const RootStack = () => {
             gestureEnabled: false,
             animationTypeForReplace: status === 'signIn' ? 'push' : 'pop'
         }}>
-            {status === 'signIn' ? (
-                <Stack.Screen name="Home" component={BottomTabNavigator} />
-            ) : (
-                <Stack.Screen name="Auth" component={AuthNavigator} />
-            )}
+            <Stack.Screen name="Auth" component={AuthNavigator} />
+            {/* {status === 'signIn' ? ( */}
+            <Stack.Screen name="Home" component={BottomTabNavigator} />
+            {/* ) : ( */}
+
+            {/* )} */}
         </Stack.Navigator>
     )
 }

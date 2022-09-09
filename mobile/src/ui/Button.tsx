@@ -1,59 +1,63 @@
+import { Pressable, StyleSheet, TouchableHighlight } from 'react-native'
 import React from 'react'
-import { ActivityIndicator, TouchableOpacity } from 'react-native'
-import {
-    useRestyle,
-    spacing,
-    border,
-    backgroundColor,
-    SpacingProps,
-    BorderProps,
-    BackgroundColorProps,
-    VariantProps,
-    composeRestyleFunctions,
-    createRestyleComponent,
-    createVariant,
-} from "@shopify/restyle"
+import { View, Text } from 'ui'
+import { backgroundColor, border, composeRestyleFunctions, createVariant, VariantProps, SpacingProps, ColorProps, spacing, useRestyle } from '@shopify/restyle'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { Theme } from './theme';
+Icon.loadFont()
 
-import { Text } from './Text'
-import { View } from './View'
-import { Theme } from './theme'
+const buttonVariant = createVariant({ themeKey: 'buttonVariants' });
 
-const buttonVariant = createVariant({ themeKey: "buttonVariants" });
-const ButtonContainer = createRestyleComponent<
-    VariantProps<Theme, 'buttonVariants'> & React.ComponentProps<typeof View>, Theme>([buttonVariant], View)
-const restyleFunctions = composeRestyleFunctions([
+type RestyleProps = SpacingProps<Theme> &
+    ColorProps<Theme>;
+
+const restyleFunctions = composeRestyleFunctions<Theme, RestyleProps>([
     buttonVariant as any,
     spacing,
     border,
-    backgroundColor
+    backgroundColor,
 ]);
 
 type Props = SpacingProps<Theme> &
-    VariantProps<Theme, 'buttonVariants'> &
-    BorderProps<Theme> & BackgroundColorProps<Theme> & {
-        onPress: () => void;
-        label?: string;
-        outline?: boolean;
-        loading?: boolean;
-    }
-
+    VariantProps<Theme, 'buttonVariants'> & {
+        style?: any;
+        onPress?: () => void,
+        icon?: React.ReactNode,
+        label?: string,
+        price?: string,
+        variant?: string,
+        backgroundColor?: string,
+    };
 
 export const Button = ({
-    onPress,
+    icon,
     label,
-    loading = false,
-    variant = 'primary',
+    price,
+    variant,
+    onPress,
     ...rest
 }: Props) => {
     const props = useRestyle(restyleFunctions, { ...rest, variant });
-    const textVariant = 'button_' + variant;
-    return (
-        <TouchableOpacity onPress={onPress}>
-            <ButtonContainer
-                {...props}>
-                <Text variant={textVariant as Partial<keyof Theme['textVariants']>}>{label}</Text>
-            </ButtonContainer>
+    const textVariant = variant + '_label';
 
-        </TouchableOpacity>
+    return (
+        <Pressable
+            {...props}
+
+            onPress={onPress}
+        >
+            <View
+                height='100%' flexDirection='row' justifyContent='center' alignItems='center'
+            >
+                {icon && <View flexDirection='row' justifyContent='center' alignItems='center'>{icon}</View>}
+                {label &&
+                    <Text
+                        variant={textVariant as Partial<keyof Theme['textVariants']>}
+                    >
+                        {label}
+                    </Text>}
+
+            </View>
+        </Pressable>
     )
 }
