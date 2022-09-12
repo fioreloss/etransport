@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { Button, Input, Screen, Text, View, WIDTH } from 'ui';
 import Modal from "react-native-modal";
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import { MainImage } from '../../../assets/images'
 
 type FormData = {
     startPoint: string,
@@ -26,13 +26,19 @@ const Home = ({ navigation }: any) => {
     const onSubmit = (data: FormData) => {
         console.log(data);
     };
+
     return (
         <Screen style={{ justifyContent: 'space-between' }}>
             <View>
-                <View backgroundColor={'gray-500'} height={'45%'}></View>
+                <View backgroundColor={'gray-500'} height={'45%'}>
+                    <Image
+                        style={{ width: '100%', height: '100%', }}
+                        source={MainImage}
+                    />
+                </View>
                 <View paddingHorizontal={'screen'} width='100%' style={{ paddingTop: '15%' }}>
-                    <Text variant={'H_1'} paddingBottom='s'>Ready to hit the road</Text>
-                    <Text variant={'P_1'}>Ready to hit the road</Text>
+                    <Text variant={'H_1'} paddingBottom='s'>Ready to hit the road!</Text>
+                    <Text variant={'P_1'}>Book Your Ticket And Start Your Adventure!</Text>
                     <View alignItems='center' width='100%' style={{ paddingTop: '30%' }}>
                         <Button variant={'primary'} label='Get Your Ticket' style={{ width: '65%' }} onPress={() => {
                             toggleModal()

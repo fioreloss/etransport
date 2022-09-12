@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
 import MultiSelect from 'react-native-multiple-select';
+import { useNavigation } from '@react-navigation/native';
 type FormData = {
     busPlate?: string
     shasi?: string
@@ -15,7 +16,8 @@ const schema = yup.object().shape({
     shasi: yup.string().required(),
     busSeats: yup.number().required()
 });
-const AddBus = () => {
+const AddBus = (props: any) => {
+    const navigation = useNavigation()
     const [road, setRoad] = useState<any>()
     const [type, setType] = useState<any>()
     const { handleSubmit, control } = useForm<FormData>({
@@ -23,36 +25,50 @@ const AddBus = () => {
     });
     const onSubmit = (data: FormData) => {
         console.log(data);
+        props.onClose()
     };
-    const items = [{
-        id: '92iijs7yta',
-        name: 'Ondo'
-    }, {
-        id: 'a0s0a8ssbsd',
-        name: 'Ogun'
-    }, {
-        id: '16hbajsabsd',
-        name: 'Calabar'
-    }, {
-        id: 'nahs75a5sg',
-        name: 'Lagos'
-    }, {
-        id: '667atsas',
-        name: 'Maiduguri'
-    }, {
-        id: 'hsyasajs',
-        name: 'Anambra'
-    }, {
-        id: 'djsjudksjd',
-        name: 'Benue'
-    }, {
-        id: 'sdhyaysdj',
-        name: 'Kaduna'
-    }, {
-        id: 'suudydjsjd',
-        name: 'Abuja'
-    }
-    ];
+    const Cites = [
+        {
+            id: '1',
+            name: 'Tirane'
+        },
+        {
+            id: '2',
+            name: 'Vlore'
+        }, {
+            id: '3',
+            name: 'Fier'
+        },
+        {
+            id: '4',
+            name: 'Sarande'
+        }, {
+            id: '5',
+            name: 'Gjirokaster'
+        },
+        {
+            id: '6',
+            name: 'Shkoder'
+        }, {
+            id: '7',
+            name: 'Lushnje'
+        }, {
+            id: '8',
+            name: 'Kukes'
+        }, {
+            id: '9',
+            name: 'Lac'
+        }, {
+            id: '10',
+            name: 'Berat'
+        }, {
+            id: '11',
+            name: 'Korce'
+        }, {
+            id: '12',
+            name: 'Elbasan'
+        }
+    ]
     const types = [{
         id: 'minibus',
         name: 'MiniBus'
@@ -104,7 +120,7 @@ const AddBus = () => {
                 styleItemsContainer={{ borderRadius: 14, }}
             />
             <MultiSelect
-                items={items}
+                items={Cites}
                 onSelectedItemsChange={item => setRoad(item)}
                 uniqueKey="id"
                 selectedItems={road}

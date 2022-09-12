@@ -4,6 +4,8 @@ import { Screen, View, Input, Button, Text } from "ui";
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import NavigationBar from "components/NavigationBar";
+import { LoginImage } from "../../../assets/images";
+import { Image } from "react-native";
 type LoginProps = {
     navigation: any;
 }
@@ -32,7 +34,12 @@ export const LoginScreen = (props: LoginProps) => {
     return (
         <Screen >
             <NavigationBar addBackButton style={{ paddingLeft: 24 }} />
-            <View backgroundColor={'gray-500'} height={'35%'}></View>
+            <View backgroundColor={'gray-500'} height={'35%'}>
+                <Image
+                    style={{ width: '100%', height: '100%', }}
+                    source={LoginImage}
+                />
+            </View>
             <View paddingHorizontal={'screen'} mt='m'>
                 <View alignItems={'flex-end'}>
                     <Input

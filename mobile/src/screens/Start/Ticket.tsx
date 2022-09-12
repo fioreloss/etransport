@@ -3,22 +3,26 @@ import React from 'react'
 import Slider from '../../../assets/icons/Slider.svg'
 import { View, Text, Screen, Button } from 'ui'
 import NavigationBar from 'components/NavigationBar'
-const Ticket = ({ navigation }) => {
+
+const Ticket = ({ navigation, route }) => {
+    const { data, item } = route.params
+    console.log(data)
+    console.log(item)
     return (
         <Screen style={{ backgroundColor: '#d4e4f2', paddingHorizontal: 24, alignItems: 'center' }} >
             <NavigationBar title='Get Your Ticket' addBackButton />
             <View borderTopLeftRadius={15} borderTopRightRadius={15} backgroundColor='primary' width={'100%'} alignItems='center' paddingVertical={'xs'} marginTop='l'>
-                <Text variant={'H_2_White'}>456-66-66</Text>
+                <Text variant={'H_2_White'}>{item.id}</Text>
             </View>
             <View backgroundColor='white' width={'100%'} borderBottomLeftRadius={15} borderBottomRightRadius={15} paddingHorizontal={'m'} alignItems='flex-start' height='70%'>
                 <View justifyContent={'space-between'} flexDirection='row' style={{ display: 'flex' }} width='100%' paddingTop='xxxl' paddingBottom={'s'}>
-                    <Text variant={'H_2'}>13:00</Text>
-                    <Text variant={'H_2'}>13:00</Text>
+                    <Text variant={'H_2'}>{item.startTime}</Text>
+                    <Text variant={'H_2'}>{item.endTime}</Text>
                 </View>
                 <Slider />
                 <View justifyContent={'space-between'} flexDirection='row' style={{ display: 'flex' }} width='100%' paddingTop='m' paddingBottom={'s'}>
-                    <Text variant={'H_2'}>Tirane</Text>
-                    <Text variant={'H_2'}>Vlore</Text>
+                    <Text variant={'H_2'}>{item.startDestination}</Text>
+                    <Text variant={'H_2'}>{item.endDestination}</Text>
                 </View>
                 <View mt='l' flexDirection={'row'} justifyContent='space-between' width={'100%'}>
                     <View>
@@ -26,11 +30,11 @@ const Ticket = ({ navigation }) => {
                             Date:
                         </Text>
                         <Text variant={'H_2'}>
-                            12/03/2022
+                            {item.date}
                         </Text>
                     </View>
                     <View backgroundColor={'primary'} padding='xxxs' borderRadius={15} justifyContent='center' alignItems={'center'}>
-                        <Text variant={'H_2_White'}> AA234ab</Text>
+                        <Text variant={'H_2_White'}>{item.busPlate}</Text>
 
                     </View>
                 </View>
@@ -39,7 +43,7 @@ const Ticket = ({ navigation }) => {
                         Passenger:
                     </Text>
                     <Text variant={'H_2'}>
-                        Test Test
+                        {data.fullname}
                     </Text>
                 </View>
                 <View mt='l'>
@@ -47,7 +51,7 @@ const Ticket = ({ navigation }) => {
                         ID:
                     </Text>
                     <Text variant={'H_2'}>
-                        Test Test
+                        {item.id}
                     </Text>
                 </View>
                 <View mt='l'>
@@ -55,7 +59,7 @@ const Ticket = ({ navigation }) => {
                         Email:
                     </Text>
                     <Text variant={'H_2'}>
-                        Test Test
+                        {data.email}
                     </Text>
                 </View>
 

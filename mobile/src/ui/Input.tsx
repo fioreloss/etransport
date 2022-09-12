@@ -97,6 +97,7 @@ export function Input<T>(props: Props<T>) {
             {fieldState.error && (
                 <Text fontSize={12}
                     color="error"
+                    variant={'Error'}
                 >
                     {fieldState.error.message}
                 </Text>
@@ -115,7 +116,10 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         padding: 15,
         fontSize: 16,
-        borderRadius: 13
+        borderRadius: 13,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center'
 
     },
     inputStyle: {

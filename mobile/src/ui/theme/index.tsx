@@ -81,6 +81,14 @@ export const theme = createTheme({
             lineHeight: 16,
 
         },
+        'Error': {
+            fontFamily: 'Roboto-Regular',
+            fontWeight: '400',
+            fontSize: 12,
+            lineHeight: 16,
+            color: 'error'
+
+        },
         'H_3_White': {
             fontFamily: 'Roboto-Regular',
             fontWeight: '600',

@@ -15,7 +15,7 @@ export const Screen = ({ children, style }: Props) => {
             flexDirection='column'
             flex={1}
         >
-            <StatusBar backgroundColor={'red'} barStyle="dark-content" />
+            <StatusBar backgroundColor={'white'} barStyle="dark-content" />
             {children}
         </SafeAreaView>
     )

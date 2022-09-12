@@ -87,7 +87,7 @@ export const HomeScreen = ({ navigation }) => {
                     animationOutTiming={600}
                 >
                     <View height={'70%'} width={'100%'} backgroundColor='white' borderTopLeftRadius={15} borderTopRightRadius={15} paddingTop='l'>
-                        <AddBus />
+                        <AddBus onClose={() => { toggleModalBus }} />
                     </View>
                 </Modal>
                 <Modal isVisible={modalSlotVisible}
