@@ -1,14 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const BodyParse = require("body-parser");
-
+const mongoose = require("mongoose", {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // configs
-const db = require("./db");
 
+mongoose.connect("mongodb+srv://admin:QSKtMv0HU8D6sBFt@etransportdb.aiitb58.mongodb.net/?retryWrites=true&w=majority");
 
-
-// midleware
+// midleware 
 const app = express();
 app.use(cors());
 // app.use(BodyParse.urlencoded());
@@ -16,24 +19,16 @@ app.use(BodyParse.urlencoded({ extended: true }));
 app.use(BodyParse.json());
 
 // routs
-const LoginAndAuth=require("./routes/LogIn")
-const Products=require("./routes/Products")
-const ProductsPost=require("./routes/ProductsPost")
+const Login = require("./routes/LogIn");
+const BussLine = require("./routes/BussLine");
 
 // librarys
 
-
-
-
-
-
 // routs
-app.use("/",LoginAndAuth)
-app.use("/",Products)
-app.use("/",ProductsPost)
+app.use("/auth", Login);
+app.use("/BussLine", BussLine);
+// routes >>
 
-
-
-app.listen(3002, () => {
-  console.log("port 3002");
+app.listen(3000, () => {
+  console.log("port 3000");
 });
