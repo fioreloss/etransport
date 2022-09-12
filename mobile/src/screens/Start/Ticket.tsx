@@ -3,7 +3,7 @@ import React from 'react'
 import Slider from '../../../assets/icons/Slider.svg'
 import { View, Text, Screen, Button } from 'ui'
 import NavigationBar from 'components/NavigationBar'
-const Ticket = () => {
+const Ticket = ({ navigation }) => {
     return (
         <Screen style={{ backgroundColor: '#d4e4f2', paddingHorizontal: 24, alignItems: 'center' }} >
             <NavigationBar title='Get Your Ticket' addBackButton />
@@ -60,7 +60,7 @@ const Ticket = () => {
                 </View>
 
             </View>
-            <Button variant='primary' label='Get Your ticket' onPress={() => { }} marginTop='m' />
+            <Button variant='primary' label='Get Your ticket' onPress={() => { navigation.navigate('StartScreen') }} marginTop='m' />
         </Screen>
     )
 }

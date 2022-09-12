@@ -8,7 +8,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import AddBus from "components/AddBus";
 import Slotsmodal from "components/Slotsmodal";
 Icon.loadFont()
-export const HomeScreen = () => {
+export const HomeScreen = ({ navigation }) => {
     const [modalScanVisible, setModalScanVisible] = useState(false)
     const [modalAddBusisible, setModalAddBusVisible] = useState(false)
     const [modalSlotVisible, setModalSlotVisible] = useState(false)
@@ -104,7 +104,11 @@ export const HomeScreen = () => {
                     </View>
                 </Modal>
             </View>
-            <Button label="Logout" variant={'primary'} style={{ width: '80%', marginLeft: 24 }} />
+            <Button label="Logout" variant={'primary'} style={{ width: '80%', marginLeft: 24 }} onPress={() => {
+                navigation.navigate('Auth', {
+                    screen: 'Login',
+                });
+            }} />
         </Screen >
     )
 }
