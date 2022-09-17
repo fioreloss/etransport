@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "clean:android": "cd android && ./gradlew cleanBuildCache && ./gradlew clean && cd ..",
+    "clean:android": "cd android &&  ./gradlew clean && cd ..",
     "clean:ios": "rm -rf ios/build",
     "clean": "run-p clean:*",
     "setup:ios": "cd ios && pod install --repo-update && cd ..",
