@@ -1,16 +1,28 @@
 const { sendMail, transportContext } = require("../config/MailConfig");
 
- const sendToOffice = async (emailBody, emailTo) => {
+const sendToOffice = async (emailBody, emailTo) => {
   const transporter = transportContext().transporter;
 
   let mailOptions = {
     from: `test <${transportContext().email}>`,
     to: emailTo,
-    subject: ` test from ${emailBody.firstName}  `,
+    subject: ` test from bus transport  `,
+    html: `</br> <img src="cid:adksjfsdjjfkdsakfjsdfksdfsdjfjasdklfasdfsdjfadsfsdfsdfjklsdjfasdklfjas"> <br/>
+
+    <h2>carTag: ${emailBody.carTag}</h2>
+    <h2>startTime: ${emailBody.startTime}</h2>
+    <h2>busLine: ${emailBody.busLine}</h2>
+    
+    `,
     text: `
 
 
       `,
+      attachments: [{
+        filename: 'image.png',
+        path: emailBody.qr,
+        cid: 'adksjfsdjjfkdsakfjsdfksdfsdjfjasdklfasdfsdjfadsfsdfsdfjklsdjfasdklfjas' //same cid value as in the html img src
+    }]
   };
 
   const status = await sendMail(mailOptions, transporter);
@@ -23,6 +35,6 @@ const { sendMail, transportContext } = require("../config/MailConfig");
     }
   });
 };
-module.exports={
-  sendToOffice
-}
+module.exports = {
+  sendToOffice,
+};
