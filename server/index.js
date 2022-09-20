@@ -21,12 +21,14 @@ app.use(BodyParse.json());
 // routs
 const Login = require("./routes/LogIn");
 const BussLine = require("./routes/BussLine");
+const SendEmail = require("./routes/SendEmail");
 
 // librarys
 
 // routs
 app.use("/auth", Login);
 app.use("/BussLine", BussLine);
+app.use("/SendEmail", SendEmail);
 // routes >>
 
 app.listen(3000, () => {
