@@ -4,10 +4,10 @@ const sendToOffice = async (emailBody, emailTo) => {
   const transporter = transportContext().transporter;
 
   let mailOptions = {
-    from: `test <${transportContext().email}>`,
+    from: `Operator <${transportContext().email}>`,
     to: emailTo,
-    subject: ` test from bus transport  `,
-    html: `</br> <img src="cid:adksjfsdjjfkdsakfjsdfksdfsdjfjasdklfasdfsdjfadsfsdfsdfjklsdjfasdklfjas"> <br/>
+    subject: `Bus Ticket`,
+    html: `</br> <img src="cid:qrcodeticketid"> <br/>
 
     <h2>carTag: ${emailBody.carTag}</h2>
     <h2>startTime: ${emailBody.startTime}</h2>
@@ -18,10 +18,10 @@ const sendToOffice = async (emailBody, emailTo) => {
 
 
       `,
-      attachments: [{
-        filename: 'image.png',
-        path: emailBody.qr,
-        cid: 'adksjfsdjjfkdsakfjsdfksdfsdjfjasdklfasdfsdjfadsfsdfsdfjklsdjfasdklfjas' //same cid value as in the html img src
+    attachments: [{
+      filename: 'image.png',
+      path: emailBody.qr,
+      cid: 'qrcodeticketid' //same cid value as in the html img src
     }]
   };
 

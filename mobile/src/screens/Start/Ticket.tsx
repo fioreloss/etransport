@@ -4,10 +4,33 @@ import Slider from '../../../assets/icons/Slider.svg'
 import { View, Text, Screen, Button } from 'ui'
 import NavigationBar from 'components/NavigationBar'
 
-const Ticket = ({ navigation, route }) => {
+const Ticket = ({ navigation, route }: any) => {
     const { data, item } = route.params
-    console.log(data)
-    console.log(item)
+
+
+    const Sendemail = async () => {
+
+        try {
+            const response = await fetch(`http://localhost:3000/SendEmail/sendEmail`, {
+                method: 'POST',
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ticketId: item.id,
+                    carTag: item.busPlate,
+                    startTime: item.startTime,
+                    busLine: `${item.startDestination}-${item.endDestination}`,
+                    email: data.email
+                })
+            })
+            const res = await response.json()
+        } catch (error) {
+            console.log('error', error)
+
+        }
+    }
     return (
         <Screen style={{ backgroundColor: '#d4e4f2', paddingHorizontal: 24, alignItems: 'center' }} >
             <NavigationBar title='Get Your Ticket' addBackButton />
@@ -64,7 +87,10 @@ const Ticket = ({ navigation, route }) => {
                 </View>
 
             </View>
-            <Button variant='primary' label='Get Your ticket' onPress={() => { navigation.navigate('StartScreen') }} marginTop='m' />
+            <Button variant='primary' label='Get Your ticket' onPress={() => {
+                Sendemail()
+                navigation.navigate('StartScreen')
+            }} marginTop='m' />
         </Screen>
     )
 }

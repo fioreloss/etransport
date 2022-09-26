@@ -9,7 +9,7 @@ const mongoose = require("mongoose", {
 
 // configs
 
-mongoose.connect("mongodb+srv://admin:QSKtMv0HU8D6sBFt@etransportdb.aiitb58.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://adminadmin:fBhoS11FbBkyM7ah@etransportdb.amajtgd.mongodb.net/?retryWrites=true&w=majority");
 
 // midleware 
 const app = express();

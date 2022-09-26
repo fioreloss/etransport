@@ -20,7 +20,7 @@ const schema = yup.object().shape({
 const TicketsScreen = ({ navigation }: any) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState()
-    const toggleModal = (item) => {
+    const toggleModal = (item: any) => {
         setModalVisible(!isModalVisible);
         setSelectedItem(item)
     };
